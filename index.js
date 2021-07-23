@@ -30,9 +30,14 @@ myFunction();
 For example, `summation(4)` should return 10 because 1+2+3+4 is 10. Note, you may use a for loop for this function if you wish */
 
 function summation(number) {
-    
-
+    let counter = 0;
+    for(let i = 0; i <= number; i++){
+      counter++
+      // return counter + number;
+    }
+    return counter + number;
   }
+  console.log('task 2:', summation(4));
   
 // 🦁🦁🦁 Topic 2: ADVANCED Array Methods 🦁🦁🦁
 // Given this zoo data from around the United States, follow the instructions below. Use the specific array methods in the requests below to solve the problems.
@@ -57,8 +62,16 @@ const zooAnimals = [
   */
 
   function animalNames(animal_name, scientific_name){
+    const displayNames = [];
+    zooAnimals.forEach(function(item){
+      displayNames.push(item)
+      return `name: ${item.animal_name}, scientific: ${item.scientific_name}`
+    });
+    return displayNames
     // return displayNames array with only the animal name and scientific name of each animal.
   }
+  
+
   
 
   /* 🦁🦁🦁 Request 2: .map() 🦁🦁🦁
@@ -67,9 +80,13 @@ const zooAnimals = [
   For example: ['jackal, asiatic', .....]
   */
 
-  function lowerCaseNames(/*Your Code Here*/){
-    /*Your Code Here*/
+  function lowerCaseNames(item){
+    const loweredNames = zooAnimals.map(function (item){
+      return item.animal_name.toLowerCase();
+    });
+    return loweredNames;
   }
+
   
   
   /* 🦁🦁🦁 Request 3: .filter() 🦁🦁🦁
@@ -77,9 +94,13 @@ const zooAnimals = [
   Using lowPopulationAnimals use .filter() to create a new array of objects which contains only the animals with a population of less than 5.
   */
 
-  function lowPopulationAnimals(/*Your Code Here*/){
-    /*Your Code Here*/
+  function lowPopulationAnimals(item){
+    const filteredArray = zooAnimals.filter(function(item){
+      return item.population < 5;
+    });
+    return filteredArray;
   }
+  
   
 
   /* 🦁🦁🦁 Request 4: .reduce() 🦁🦁🦁
@@ -88,8 +109,11 @@ const zooAnimals = [
   Remember the reduce method takes two arguments: a callback (which itself takes two args - the accumulator and the item), and an initial value for the count.
   */
 
-  function USApop(/*Your Code Here*/){
-    /*Your Code Here*/
+  function USApop(item){
+    const totalPopulation = zooAnimals.reduce(function(acc, item){
+      return acc + item.population;
+    }, 0);
+    return totalPopulation;
   }
   
   
@@ -174,20 +198,34 @@ const cuboid = new CuboidMaker ({
 
 // 🐴🐴🐴 Test your volume and surfaceArea methods by uncommenting the logs below: 🐴🐴🐴
 // ⬇️ ⬇️ ⬇️ ⬇️ ⬇️ ⬇️ ⬇️ ⬇️
-console.log(cuboid.volume()); // 100
-console.log(cuboid.surfaceArea()); // 130
+// console.log(cuboid.volume()); // 100
+// console.log(cuboid.surfaceArea()); // 130
  
 
 // 🦄🦄🦄 Topic 4: Classes 🦄🦄🦄 //
 //🦄🦄🦄 1. Take your prototypes from above and refactor into class syntax. Please rename your class CuboidMakerTwo and your object cuboidTwo 🦄🦄🦄
 class CuboidMakerTwo{
-
+  constructor(measurements){
+    this.length = measurements.length,
+    this.width = measurements.width,
+    this.height = measurements.height
+  }
+  volume() {
+    return this.length * this.width * this.height;
+  }
+  surfaceArea(){
+    return 2 * (this.length * this.width + this.length * this.height + this.width * this.height);
+  }
 }
-
+const cuboidTwo = new CuboidMakerTwo({
+  length: 4,
+  width: 5,
+  height: 5
+});
 
 //🦄🦄🦄 Test your volume and surfaceArea methods by uncommenting the logs below: 🦄🦄🦄
-// console.log(cuboidTwo.volume()); // 100
-// console.log(cuboidTwo.surfaceArea()); // 130
+console.log(cuboidTwo.volume()); // 100
+console.log(cuboidTwo.surfaceArea()); // 130
 
 
 
