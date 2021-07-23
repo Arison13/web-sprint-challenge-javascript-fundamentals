@@ -28,7 +28,10 @@ Edit this document to include your answers after each question. Make sure to lea
 
 2. Explain the difference between a callback and a higher order function.
 
+
 3. Explain what a closure is.
+
+A closure gives you access to an outer function’s scope from an inner function.
 
 4. Describe the four principles of the 'this' keyword.
 
